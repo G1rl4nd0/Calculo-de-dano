@@ -1,31 +1,25 @@
-const atacante = prompt("Qual é o nome do personagem atacante?");
-const poderDeAtaque = parseFloat(prompt("Qual é o seu poder de ataque?"));
+const minha_lista = [1, 2, 5, 7, 9]
 
-const defensor = prompt("Qual é nome do personagem defensor?");
-let pontosDeVida = parseFloat(prompt("Quantos pontos de vida ele possui?"));
-const poderDeDefesa = parseFloat(prompt("Qual é o seu poder de defesa?"));
-const possuiEscudo = prompt("Ele possui um escudo? (Sim/Não)");
+function pesquisa_binaria(lista, item) {
+  let baixo = 0;
+  let alto = lista.length - 1;
 
-let danoCausado = 0;
+  while (baixo <= alto) {
+    const meio = Math.floor((baixo + alto) / 2)
+    const chute = lista[meio];
 
-if (poderDeAtaque > poderDeDefesa && possuiEscudo === "Não") {
-  danoCausado = poderDeAtaque - poderDeDefesa;
-} else if (poderDeAtaque > poderDeDefesa && possuiEscudo === "Sim") {
-  danoCausado = (poderDeAtaque - poderDeDefesa) / 2;
+    if(chute === item) {
+      return meio
+    }
+    if (chute > item) {
+      alto = meio - 1;
+    }
+    else {
+      baixo = meio + 1;
+    }
+  }
+  return null
 }
-pontosDeVida -= danoCausado;
 
-alert(atacante + " causou " + danoCausado + " pontos de dano em " + defensor);
-alert(
-  atacante +
-    "\nPoder de ataque: " +
-    poderDeAtaque +
-    "\n\n" +
-    defensor +
-    "\nPontos de vida: " +
-    pontosDeVida +
-    "\nPoder de defesa: " +
-    poderDeDefesa +
-    "\nPossui escudo: " +
-    possuiEscudo
-);
+console.log(pesquisa_binaria(minha_lista, 2))
+console.log(pesquisa_binaria(minha_lista, 7))
